@@ -1,0 +1,17 @@
+[ 
+    { 
+        "name": "NAFEES AHAMAD", 
+        "rollNo": "829", 
+        "department": "CSE" 
+    },  
+    { 
+        "name": "NIVAS R", 
+        "rollNo": "847", 
+        "department": "ECE" 
+    }, 
+    { 
+        "name": "NAVIN KUMAR S", 
+        "rollNo": "836", 
+        "department": "AI&ML" 
+    }
+]

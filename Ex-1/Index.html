@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Registration Form</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 30px;
+}
+input {
+  width: 300px;
+  padding: 8px;
+  margin-bottom: 5px;
+}
+.error {
+  color: red;
+  font-size: 0.9em;
+}
+</style>
+</head>
+<body>
+<h2>Registration Form</h2>
+<form onsubmit="return validateForm()">
+<label>Name:</label><br>
+<input type="text" id="name"><br>
+<span id="nameError" class="error"></span><br>
+<label>Email:</label><br>
+<input type="text" id="email"><br>
+<span id="emailError" class="error"></span><br>
+<label>Age:</label><br>
+<input type="number" id="age"><br>
+<span id="ageError" class="error"></span><br>
+<input type="submit" value="Register">
+</form>
+<script>
+function validateForm() {
+  var name = document.getElementById("name").value.trim();
+  var email = document.getElementById("email").value.trim();
+  var age = document.getElementById("age").value.trim();
+  var nameError = document.getElementById("nameError");
+  var emailError = document.getElementById("emailError");
+  var ageError = document.getElementById("ageError");
+  nameError.textContent = "";
+  emailError.textContent = "";
+  ageError.textContent = "";
+  var isValid = true;
+  var namePattern = /^[A-Za-z\s]+$/;
+  if (name === "") {
+    nameError.textContent = "Name is required.";
+    isValid = false;
+  } else if (!name.match(namePattern)) {
+    nameError.textContent = "Name must contain only letters and spaces.";
+    isValid = false;
+  }
+  var emailPattern = /^[^\s@]+@[^\s@]+\.[a-z]{2,3}$/;
+  if (email === "") {
+    emailError.textContent = "Email is required.";
+    isValid = false;
+  } else if (!email.match(emailPattern)) {
+    emailError.textContent = "Invalid email format.";
+    isValid = false;
+  }
+  if (age === "") {
+    ageError.textContent = "Age is required.";
+    isValid = false;
+  } else if (isNaN(age) || age < 18 || age > 99) {
+    ageError.textContent = "Age must be between 18 and 99.";
+    isValid = false;
+  }
+  // Success
+  if (isValid) {
+    alert("Registration successful!");
+  }
+  return isValid;
+}
+</script>
+</body>
+</html>

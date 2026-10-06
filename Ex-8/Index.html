@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Event Management</title>
+</head>
+<body>
+    <h1>Event Management System</h1>
+    <!-- Add Event -->
+    <h2>Add Event</h2>
+    <form action="/add-event" method="POST">
+        <input type="text" name="name" placeholder="Event Name" required>
+        <br>
+        <input type="date" name="date" required>
+        <br>
+        <input type="text" name="location" placeholder="Location" required>
+        <br>
+        <textarea name="description" placeholder="Description"></textarea>
+        <br>
+        <button type="submit">Add Event</button>
+    </form>
+    <hr>
+    <!-- Update Event -->
+    <h2>Update Event</h2>
+    <form action="/update-event" method="POST">
+        <input type="number" name="id" placeholder="Event ID" required>
+        <br>
+        <input type="text" name="name" placeholder="New Event Name" required>
+        <br>
+        <input type="date" name="date" required>
+        <br>
+        <input type="text" name="location" placeholder="New Location" required>
+        <br>
+        <textarea name="description" placeholder="New Description"></textarea>
+        <br>
+        <button type="submit">Update Event</button>
+    </form>
+    <hr>
+    <!-- Delete Event -->
+    <h2>Delete Event</h2>
+    <form action="/delete-event" method="POST">
+        <input type="number" name="id" placeholder="Event ID" required>
+        <br>
+        <button type="submit">Delete Event</button>
+    </form>
+    <hr>
+    <!-- View Events -->
+    <h2>View All Events</h2>
+    <button onclick="fetchEvents()">Show Events</button>
+    <pre id="eventList"></pre>
+    <script>
+        async function fetchEvents() {
+            const res = await fetch("/events");
+            const data = await res.json();
+            document.getElementById("eventList").textContent =
+                JSON.stringify(data, null, 2);
+        }
+    </script>
+</body>
+</html>

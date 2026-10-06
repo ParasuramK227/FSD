@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Cards - Fetch API</title>
+    <style>
+        .card {
+            border: 1px solid #aaa;
+            border-radius: 8px;
+            padding: 10px;
+            margin: 10px;
+            width: 250px;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h2>Student List (via Fetch API)</h2>
+    <div id="container"></div>
+    <script>
+        fetch("students.json")
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Unable to load JSON file");
+            }
+            return response.json();
+        })
+        .then(data => {
+            const container = document.getElementById("container");
+            data.forEach(student => {
+                const card = document.createElement("div");
+                card.className = "card";
+                card.innerHTML = `
+                    <h3>${student.name}</h3>
+                    <p><strong>Roll No:</strong> ${student.rollNo}</p>
+                    <p><strong>Department:</strong> ${student.department}</p>
+                `;
+                container.appendChild(card);
+            });
+        })
+        .catch(error => {
+            console.error("Error:", error);
+        });
+    </script>
+</body>
+</html>
